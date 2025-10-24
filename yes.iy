@@ -1,0 +1,65 @@
+function randomstring()
+    local charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    local minLen, maxLen = 5, 20
+    local length = math.random(minLen, maxLen)
+    local result = {}
+
+    for i = 1, length do
+        local randIndex = math.random(1, #charset)
+        table.insert(result, charset:sub(randIndex, randIndex))
+    end
+
+    return table.concat(result)
+end
+
+local Plugin = {
+	["PluginName"] = "K1TT7H4X",
+	["PluginDescription"] = "K1TT7H4X Plugin By Aztheroz (@Aztheroz158) And Frogly (@ChickenBoss115)",
+	["Commands"] = {
+		["darkdex"] = {
+			["ListName"] = "[K1TT7H4X] darkdex",
+			["Description"] = "Executes Dark Dex",
+			["Aliases"] = {},
+			["Function"] = function(args, speaker)
+				loadstring(game:HttpGet("https://pastebin.com/raw/fPP8bZ8Z"))()
+			end,
+		},
+        ["tprand"] = {
+            ["ListName"] = "[K1TT7H4X] tprand"
+            ["Description"] = "Teleports To A Random Player"
+            ["Aliases"] = {},
+			["Function"] = function(args, speaker)
+				local plrs = game.Players
+                local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+                local rand = math.random(0, #plrs)
+                local plr = plrs[rand]
+                hrp.Position = plr.Character.HumanoidRootPart.Position
+			end,
+        },
+        ["spamchat"] = {
+            ["ListName"] = "[K1TT7H4X] chatspammer"
+            ["Description"] = "Spams The Hell Of Chat"
+            ["Aliases"] = {},
+			["Function"] = function(args, speaker)
+				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(randomstring())
+			end,
+        },
+        ["helicopter"] = {
+            ["ListName"] = "[K1TT7H4X] helicopter"
+            ["Description"] = "HELICOPTER HELICOPTER"
+            ["Aliases"] = {},
+			["Function"] = function(args, speaker)
+				local char = game.Players.LocalPlayer.Character
+                local hrp = char.HumanoidRootPart
+
+                task.spawn(function(char, hrp)
+                    while task.wait() do
+                        hrp.Rotation = hrp.Rotation + Vector3.new(5,0,0)
+                    end
+                end, char, hrp)
+			end,
+        }
+	},
+}
+
+return Plugin
